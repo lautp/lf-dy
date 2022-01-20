@@ -14,7 +14,6 @@ const CardsState = props => {
 	//Get all cards
 	const getCards = async () => {
 		const res = await axios.get('/api/cards');
-		console.log(res);
 		dispatch({ type: GET_CARDS, payload: res.data });
 	};
 	return (

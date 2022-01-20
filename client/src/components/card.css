@@ -1,0 +1,8 @@
+img {
+	max-width: 14rem;
+}
+
+.clicked {
+	border: solid 0.1rem;
+	border-color: chartreuse;
+}

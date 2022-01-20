@@ -4,7 +4,7 @@ export default (state, action) => {
 		case GET_CARDS:
 			return {
 				...state,
-				cards: action.payload,
+				cards: [...state.cards, action.payload],
 			};
 
 		default:
