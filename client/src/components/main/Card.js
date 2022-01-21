@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import CardsContext from '../../context/cards/cardsContext';
 import fabback from '../fab-back.png';
 import '../card.css';
 
-const Card = () => {
+const Card = props => {
+	const { source } = props;
+	const cardsContext = useContext(CardsContext);
+	const { pickCard, getSource } = cardsContext;
 	const handleClick = e => {
-		e.target.className += 'clicked';
-		console.log(e.target);
+		pickCard(e);
+		getSource(e.target.src);
 	};
+	const handlePick = e => {
+		e.target.remove();
+	};
+
 	return (
 		<>
-			<a href="#!" onClick={handleClick} className="col-1 bg-primary">
-				<img src={fabback} alt="flesh and blood cardback" />
-			</a>
+			<img
+				src={source ? source : fabback}
+				alt="flesh and blood card"
+				className="col-1 "
+				onClick={handleClick}
+				onDoubleClick={handlePick}
+			/>
 		</>
 	);
 };
