@@ -1,14 +1,25 @@
 import React, { useReducer } from 'react';
-import { FILL_SLOT, GET_CARDS, PICK_CARD, GET_SRC } from '../types';
+import {
+	FILL_SLOT,
+	GET_CARDS,
+	PICK_CARD,
+	GET_SRC,
+	START,
+	PACK,
+} from '../types';
 import axios from 'axios';
 import cardsReducer from './cardsReducer';
 import CardsContext from './cardsContext';
 
 const CardsState = props => {
 	const intitialState = {
-		cards: [],
+		cards: '',
 		cardpick: null,
 		source: null,
+		cardurl: [],
+		started: false,
+		pack: [],
+		pool: [],
 	};
 
 	const [state, dispatch] = useReducer(cardsReducer, intitialState);
@@ -25,27 +36,50 @@ const CardsState = props => {
 	};
 
 	//Fill slot
-	const fillSlot = () => {
-		dispatch({ type: FILL_SLOT, payload: state.cardpick });
+	const fillSlot = obj => {
+		dispatch({ type: FILL_SLOT, payload: obj });
 	};
 
 	//Get source
 	const getSource = src => {
 		dispatch({
 			type: GET_SRC,
-			payload:
-				'https://icv2.com/images/article_thumbs/650x650_c0e607185665683f2610f5bb9a04d8ccd0e47b06307dd6b6b624d2d4.jpg',
+			payload: src,
 		});
 	};
+
+	//Start
+	const start = () => {
+		pack();
+	};
+
+	//Construct pack
+	const pack = () => {
+		for (let i = 0; i < 15; i++) {
+			dispatch({
+				type: PACK,
+				payload:
+					state.cards[0][Math.floor(Math.random() * state.cards[0].length)],
+			});
+		}
+		dispatch({ type: START });
+	};
+
 	return (
 		<CardsContext.Provider
 			value={{
 				cards: state.cards,
 				cardpick: state.cardpick,
 				source: state.source,
+				cardurl: state.cardurl,
+				started: state.started,
+				pack: state.pack,
+				pool: state.pool,
 				getCards,
 				pickCard,
 				getSource,
+				fillSlot,
+				start,
 			}}>
 			{props.children}
 		</CardsContext.Provider>

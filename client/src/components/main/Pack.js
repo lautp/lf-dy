@@ -1,28 +1,46 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import CardsContext from '../../context/cards/cardsContext';
 import Card from './Card';
 
+const top = [1, 2, 3, 4, 5, 6, 7, 8];
+const bot = [1, 2, 3, 4, 5, 6, 7];
+
 const Pack = () => {
+	const cardsContext = useContext(CardsContext);
+	const { started, pack } = cardsContext;
+
 	return (
 		<>
 			<div className="container-fluid pb-5 pt-5">
 				<div className="row col-12 d-flex justify-content-center">
-					<Card key="1" />
-					<Card key="2" />
-					<Card key="3" />
-					<Card key="4" />
-					<Card key="5" />
-					<Card key="6" />
-					<Card key="7" />
-					<Card key="8" />
+					{started
+						? top.map((num, idx) => {
+								return (
+									<Card
+										key={idx}
+										id={idx}
+										source={pack[idx].image}
+										pitch={pack[idx].stats.resource}
+										rarity={pack[idx].rarity}
+									/>
+								);
+						  })
+						: null}
 				</div>
 				<div className="row col-12 mt-5 d-flex justify-content-center">
-					<Card key="9" />
-					<Card key="10" />
-					<Card key="11" />
-					<Card key="12" />
-					<Card key="13" />
-					<Card key="14" />
-					<Card key="15" />
+					{started
+						? bot.map((num, idx) => {
+								return (
+									<Card
+										key={idx + 8}
+										id={idx + 8}
+										source={pack[idx + 8].image}
+										pitch={pack[idx + 8].stats.resource}
+										rarity={pack[idx + 8].rarity}
+									/>
+								);
+						  })
+						: null}
 				</div>
 			</div>
 		</>

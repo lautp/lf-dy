@@ -1,4 +1,12 @@
-import { GET_CARDS, PICK_CARD, FILL_SLOT, GET_SRC } from '../types';
+import {
+	GET_CARDS,
+	PICK_CARD,
+	FILL_SLOT,
+	GET_SRC,
+	START,
+	PACK,
+	POOL,
+} from '../types';
 export default (state, action) => {
 	switch (action.type) {
 		case GET_CARDS:
@@ -19,7 +27,22 @@ export default (state, action) => {
 		case FILL_SLOT:
 			return {
 				...state,
-				slot1: action.payload,
+				cardurl: [...state.cardurl, action.payload],
+			};
+		case START:
+			return {
+				...state,
+				started: true,
+			};
+		case PACK:
+			return {
+				...state,
+				pack: [...state.pack, action.payload],
+			};
+		case POOL:
+			return {
+				...state,
+				pool: [...state.pool, action.payload],
 			};
 		default:
 			return state;

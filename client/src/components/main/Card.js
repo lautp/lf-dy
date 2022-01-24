@@ -4,14 +4,24 @@ import fabback from '../fab-back.png';
 import '../card.css';
 
 const Card = props => {
-	const { source } = props;
+	const { source, pitch, rarity } = props;
 	const cardsContext = useContext(CardsContext);
-	const { pickCard, getSource } = cardsContext;
+	const { pickCard, getSource, fillSlot } = cardsContext;
 	const handleClick = e => {
 		pickCard(e);
+		if (e.target.attributes.rarity) {
+			console.log(e);
+		} else {
+			console.log('no');
+		}
 		getSource(e.target.src);
 	};
 	const handlePick = e => {
+		fillSlot({
+			src: e.target.src,
+			pitch: e.target.name,
+			rarity: e.target.attributes[4].value,
+		});
 		e.target.remove();
 	};
 
@@ -23,6 +33,8 @@ const Card = props => {
 				className="col-1 "
 				onClick={handleClick}
 				onDoubleClick={handlePick}
+				name={pitch}
+				rarity={rarity}
 			/>
 		</>
 	);

@@ -11,8 +11,13 @@ const Navbar = () => {
 	const handleClose2 = () => setShow2(false);
 	const handleShow2 = () => setShow2(true);
 
+	const handleStart = () => {
+		start();
+		handleClose();
+	};
+
 	const cardsContext = useContext(CardsContext);
-	const { getCards } = cardsContext;
+	const { start } = cardsContext;
 
 	return (
 		<>
@@ -51,14 +56,16 @@ const Navbar = () => {
 				keyboard={false}
 				size="lg">
 				<Modal.Header closeButton>
-					<Modal.Title>Modal title</Modal.Title>
+					<Modal.Title>Draft</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					I will not close if you click outside me. Don't even try to press
 					escape key.
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant="primary">Start</Button>
+					<Button variant="primary" onClick={handleStart}>
+						Start
+					</Button>
 					<Button variant="secondary" onClick={handleClose}>
 						Close
 					</Button>
@@ -72,7 +79,7 @@ const Navbar = () => {
 				keyboard={false}
 				size="lg">
 				<Modal.Header closeButton>
-					<Modal.Title>Modal title</Modal.Title>
+					<Modal.Title>Sealed</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					I will not close if you click outside me. Don't even try to press
