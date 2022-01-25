@@ -22,6 +22,7 @@ const Pack = () => {
 										source={pack[idx].image}
 										pitch={pack[idx].stats.resource}
 										rarity={pack[idx].rarity}
+										keyword={pack[idx].keywords[1]}
 									/>
 								);
 						  })
@@ -37,6 +38,7 @@ const Pack = () => {
 										source={pack[idx + 8].image}
 										pitch={pack[idx + 8].stats.resource}
 										rarity={pack[idx + 8].rarity}
+										keyword={pack[idx + 8].keywords[1]}
 									/>
 								);
 						  })

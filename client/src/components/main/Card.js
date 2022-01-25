@@ -4,7 +4,7 @@ import fabback from '../fab-back.png';
 import '../card.css';
 
 const Card = props => {
-	const { source, pitch, rarity } = props;
+	const { source, pitch, rarity, keyword } = props;
 	const cardsContext = useContext(CardsContext);
 	const { pickCard, getSource, fillSlot } = cardsContext;
 	const handleClick = e => {
@@ -20,7 +20,8 @@ const Card = props => {
 		fillSlot({
 			src: e.target.src,
 			pitch: e.target.name,
-			rarity: e.target.attributes[4].value,
+			rarity: e.target.attributes[3].value,
+			keyword: e.target.attributes[4].value,
 		});
 		e.target.remove();
 	};
@@ -35,6 +36,7 @@ const Card = props => {
 				onDoubleClick={handlePick}
 				name={pitch}
 				rarity={rarity}
+				keyword={keyword}
 			/>
 		</>
 	);
