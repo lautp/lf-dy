@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import CardsContext from '../../context/cards/cardsContext';
 import Card from './Card';
+import '../pack.css';
 
 const top = [1, 2, 3, 4, 5, 6, 7, 8];
 const bot = [1, 2, 3, 4, 5, 6, 7];
@@ -11,7 +12,7 @@ const Pack = () => {
 
 	return (
 		<>
-			<div className="container-fluid pb-5 pt-5">
+			<div className="container-fluid pb-5 pt-5 pack">
 				<div className="row col-12 d-flex justify-content-center">
 					{started
 						? top.map((num, idx) => {

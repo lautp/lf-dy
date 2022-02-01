@@ -27,7 +27,7 @@ export default (state, action) => {
 		case FILL_SLOT:
 			return {
 				...state,
-				cardurl: [...state.cardurl, action.payload],
+				deck: [...state.deck, action.payload],
 			};
 		case START:
 			return {
