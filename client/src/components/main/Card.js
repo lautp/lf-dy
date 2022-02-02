@@ -31,7 +31,7 @@ const Card = props => {
 			<img
 				src={source ? source : fabback}
 				alt="flesh and blood card"
-				className="col-1 "
+				className="col-1 mt-5"
 				onClick={handleClick}
 				onDoubleClick={handlePick}
 				name={pitch}

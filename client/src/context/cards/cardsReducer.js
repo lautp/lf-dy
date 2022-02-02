@@ -6,6 +6,8 @@ import {
 	START,
 	PACK,
 	POOL,
+	GET_SET,
+	LOADING,
 } from '../types';
 export default (state, action) => {
 	switch (action.type) {
@@ -43,6 +45,16 @@ export default (state, action) => {
 			return {
 				...state,
 				pool: [...state.pool, action.payload],
+			};
+		case GET_SET:
+			return {
+				...state,
+				set: action.payload,
+			};
+		case LOADING:
+			return {
+				...state,
+				loading: action.payload,
 			};
 		default:
 			return state;

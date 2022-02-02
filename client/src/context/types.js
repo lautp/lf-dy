@@ -5,3 +5,5 @@ export const GET_SRC = 'GET_SRC';
 export const START = 'START';
 export const PACK = 'PACK';
 export const POOL = 'POOL';
+export const GET_SET = 'GET_SET';
+export const LOADING = 'LOADING';

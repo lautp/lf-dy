@@ -6,6 +6,8 @@ import {
 	GET_SRC,
 	START,
 	PACK,
+	GET_SET,
+	LOADING,
 } from '../types';
 import axios from 'axios';
 import cardsReducer from './cardsReducer';
@@ -20,6 +22,8 @@ const CardsState = props => {
 		started: false,
 		pack: [],
 		pool: [],
+		set: '',
+		loading: false,
 	};
 
 	const [state, dispatch] = useReducer(cardsReducer, intitialState);
@@ -55,14 +59,27 @@ const CardsState = props => {
 
 	//Construct pack
 	const pack = () => {
+		const selected = state.cards[0].filter(card => {
+			const found = card.printings.find(s => s.set === state.set);
+			return found;
+		});
+
 		for (let i = 0; i < 15; i++) {
 			dispatch({
 				type: PACK,
-				payload:
-					state.cards[0][Math.floor(Math.random() * state.cards[0].length)],
+				payload: selected[Math.floor(Math.random() * selected.length)],
 			});
 		}
 		dispatch({ type: START });
+	};
+
+	//Get set
+	const getSet = s => {
+		dispatch({ type: LOADING, payload: true });
+		dispatch({ type: GET_SET, payload: s });
+		setTimeout(() => {
+			dispatch({ type: LOADING, payload: false });
+		}, 1000);
 	};
 
 	return (
@@ -75,11 +92,14 @@ const CardsState = props => {
 				started: state.started,
 				pack: state.pack,
 				pool: state.pool,
+				set: state.set,
+				loading: state.loading,
 				getCards,
 				pickCard,
 				getSource,
 				fillSlot,
 				start,
+				getSet,
 			}}>
 			{props.children}
 		</CardsContext.Provider>
