@@ -8,6 +8,8 @@ import {
 	PACK,
 	GET_SET,
 	LOADING,
+	GET_FORM,
+	GET_INPUT,
 } from '../types';
 import axios from 'axios';
 import cardsReducer from './cardsReducer';
@@ -24,6 +26,8 @@ const CardsState = props => {
 		pool: [],
 		set: '',
 		loading: false,
+		form: '',
+		input: '',
 	};
 
 	const [state, dispatch] = useReducer(cardsReducer, intitialState);
@@ -82,6 +86,16 @@ const CardsState = props => {
 		}, 1000);
 	};
 
+	//Get form
+	const getForm = () => {
+		console.log('');
+	};
+
+	//Get input
+	const getInput = () => {
+		console.log('');
+	};
+
 	return (
 		<CardsContext.Provider
 			value={{
@@ -94,12 +108,16 @@ const CardsState = props => {
 				pool: state.pool,
 				set: state.set,
 				loading: state.loading,
+				form: state.form,
+				input: state.input,
 				getCards,
 				pickCard,
 				getSource,
 				fillSlot,
 				start,
 				getSet,
+				getForm,
+				getInput,
 			}}>
 			{props.children}
 		</CardsContext.Provider>

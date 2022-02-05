@@ -8,6 +8,8 @@ import {
 	POOL,
 	GET_SET,
 	LOADING,
+	GET_FORM,
+	GET_INPUT,
 } from '../types';
 export default (state, action) => {
 	switch (action.type) {
@@ -55,6 +57,16 @@ export default (state, action) => {
 			return {
 				...state,
 				loading: action.payload,
+			};
+		case GET_FORM:
+			return {
+				...state,
+				form: action.payload,
+			};
+		case GET_INPUT:
+			return {
+				...state,
+				input: action.payload,
 			};
 		default:
 			return state;

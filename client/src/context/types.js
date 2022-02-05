@@ -7,3 +7,5 @@ export const PACK = 'PACK';
 export const POOL = 'POOL';
 export const GET_SET = 'GET_SET';
 export const LOADING = 'LOADING';
+export const GET_FORM = 'GET_FORM';
+export const GET_INPUT = 'GET_INPUT';
